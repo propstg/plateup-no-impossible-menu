@@ -89,7 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BypassImpossibleMenuSystem.cs" />
+    <Compile Include="BypassSystems.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Main.cs" />
