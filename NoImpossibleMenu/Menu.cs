@@ -27,6 +27,7 @@ namespace NoImpossibleMenu {
 
             option.OnChanged += delegate (object _, bool value) {
                 NoImpossibleMenuPreferences.setBypassRequiredAppliance(value);
+                Debug.Log($"[{NoImpossibleMenu.MOD_ID}] Updated bypassRequiredAppliance value to {value}");
             };
         }
     }

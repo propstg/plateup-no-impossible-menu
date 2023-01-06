@@ -11,7 +11,7 @@ namespace NoImpossibleMenu {
 
         public const string MOD_ID = "blargle.NoImpossibleMenu";
         public const string MOD_NAME = "No Impossible Menu";
-        public const string MOD_VERSION = "0.0.1";
+        public const string MOD_VERSION = "0.0.2";
 
         public static bool isRegistered = false;
 
@@ -25,6 +25,7 @@ namespace NoImpossibleMenu {
                 initMainMenu();
                 initPauseMenu();
                 isRegistered = true;
+                Debug.Log($"[{MOD_ID}] started with bypassRequiredAppliance = {NoImpossibleMenuPreferences.isBypassRequiredAppliance()}");
             }
         }
 
