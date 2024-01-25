@@ -11,7 +11,7 @@ namespace NoImpossibleMenu {
 
         protected override void Initialise() {
             base.Initialise();
-            Debug.Log($"[{NoImpossibleMenu.MOD_ID}] Bypass appliance system initialized.");
+            NoImpossibleMenu.Log($"Bypass appliance system initialized.");
         }
 
         protected override void OnUpdate() {
@@ -27,7 +27,7 @@ namespace NoImpossibleMenu {
 
         protected override void Initialise() {
             base.Initialise();
-            Debug.Log($"[{NoImpossibleMenu.MOD_ID}] Bypass ingredient system initialized.");
+            NoImpossibleMenu.Log($"Bypass ingredient system initialized.");
         }
 
         protected override void OnUpdate() {

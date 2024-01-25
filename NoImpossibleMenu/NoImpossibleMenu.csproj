@@ -1,99 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4DDBF8E6-8CBE-4164-851F-79427D225743}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoImpossibleMenu</RootNamespace>
-    <AssemblyName>NoImpossibleMenu</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Kitchen.Common">
-      <HintPath>..\..\OvercookedPatience\Libraries\Kitchen.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.GameData">
-      <HintPath>..\..\OvercookedPatience\Libraries\Kitchen.GameData.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.ResearchMode">
-      <HintPath>..\..\OvercookedPatience\Libraries\Kitchen.ResearchMode.dll</HintPath>
-    </Reference>
-    <Reference Include="Kitchen.RestaurantMode">
-      <HintPath>..\..\OvercookedPatience\Libraries\Kitchen.RestaurantMode.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenLib-Workshop">
-      <HintPath>E:\Steam\steamapps\workshop\content\1599600\2898069883\KitchenLib-Workshop.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenMode">
-      <HintPath>..\..\OvercookedPatience\Libraries\KitchenMode.dll</HintPath>
-    </Reference>
-    <Reference Include="KitchenMods">
-      <HintPath>..\..\OvercookedPatience\Libraries\KitchenMods.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>..\..\OvercookedPatience\Libraries\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Unity.Collections">
-      <HintPath>..\..\OvercookedPatience\Libraries\Unity.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>..\..\OvercookedPatience\Libraries\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Entities">
-      <HintPath>..\..\OvercookedPatience\Libraries\Unity.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>..\..\OvercookedPatience\Libraries\Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\..\OvercookedPatience\Libraries\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\OvercookedPatience\Libraries\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\..\OvercookedPatience\Libraries\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\..\OvercookedPatience\Libraries\UnityEngine.InputModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BypassSystems.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="Preferences.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <LangVersion>8</LangVersion>
+        <PathMap>$(MSBuildThisFileDirectory)=./</PathMap>
+        <VersionPrefix>0.0.4</VersionPrefix>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Override Stack trace file locations">
+        <PathMap>$(MSBuildThisFileDirectory)=./</PathMap>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Yariazen.PlateUp.ModBuildUtilities" Version="1.10.21" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Properties\" />
+    </ItemGroup>
 </Project>

@@ -31,7 +31,7 @@ namespace NoImpossibleMenu {
             AddSelect(option);
             option.OnChanged += delegate (object _, bool value) {
                 NoImpossibleMenuPreferences.setBool(pref, value);
-                Debug.Log($"[{NoImpossibleMenu.MOD_ID}] Updated {nameof(pref)} value to {value}");
+                NoImpossibleMenu.Log($"Updated {nameof(pref)} value to {value}");
             };
         }
     }

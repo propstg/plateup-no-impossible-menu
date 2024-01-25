@@ -1,8 +1,9 @@
 ﻿using Kitchen;
 using KitchenLib;
 using KitchenLib.Event;
-using System;
+using KitchenMods;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace NoImpossibleMenu {
@@ -11,45 +12,32 @@ namespace NoImpossibleMenu {
 
         public const string MOD_ID = "blargle.NoImpossibleMenu";
         public const string MOD_NAME = "No Impossible Menu";
-        public const string MOD_VERSION = "0.0.3";
+        public static readonly string MOD_VERSION = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.ToString();
 
-        public static bool isRegistered = false;
+        private bool isRegistered;
 
-        public NoImpossibleMenu() : base(MOD_ID, MOD_NAME, "blargle", MOD_VERSION, "1.1.2", Assembly.GetExecutingAssembly()) { }
+        public NoImpossibleMenu() : base(MOD_ID, MOD_NAME, "blargle", MOD_VERSION, ">=1.1.8", Assembly.GetExecutingAssembly()) { }
 
-        protected override void Initialise() {
-            base.Initialise();
+        protected override void OnPostActivate(Mod mod) {
             Debug.Log($"[{MOD_ID}] v{MOD_VERSION} initialized");
             if (!isRegistered) {
                 NoImpossibleMenuPreferences.registerPreferences();
-                initMainMenu();
                 initPauseMenu();
                 isRegistered = true;
-                Debug.Log($"[{MOD_ID}] started with bypassRequiredAppliance = {NoImpossibleMenuPreferences.isOn(NoImpossibleMenuPreferences.BypassRequiredAppliancePref)}");
-                Debug.Log($"[{MOD_ID}] started with bypassRequiredIngredient = {NoImpossibleMenuPreferences.isOn(NoImpossibleMenuPreferences.BypassRequiredIngredientPref)}");
+                Log($"[{MOD_ID}] started with bypassRequiredAppliance = {NoImpossibleMenuPreferences.isOn(NoImpossibleMenuPreferences.BypassRequiredAppliancePref)}");
+                Log($"[{MOD_ID}] started with bypassRequiredIngredient = {NoImpossibleMenuPreferences.isOn(NoImpossibleMenuPreferences.BypassRequiredIngredientPref)}");
             }
         }
 
-        protected override void OnUpdate() { }
-
-        private void initMainMenu() {
-            Events.PreferenceMenu_MainMenu_SetupEvent += (s, args) => {
-                Type type = args.instance.GetType().GetGenericArguments()[0];
-                args.mInfo.Invoke(args.instance, new object[] { MOD_NAME, typeof(NoImpossibleMenuMenu<>).MakeGenericType(type), false });
-            };
-            Events.PreferenceMenu_MainMenu_CreateSubmenusEvent += (s, args) => {
-                args.Menus.Add(typeof(NoImpossibleMenuMenu<MainMenuAction>), new NoImpossibleMenuMenu<MainMenuAction>(args.Container, args.Module_list));
-            };
-        }
-
         private void initPauseMenu() {
-            Events.PreferenceMenu_PauseMenu_SetupEvent += (s, args) => {
-                Type type = args.instance.GetType().GetGenericArguments()[0];
-                args.mInfo.Invoke(args.instance, new object[] { MOD_NAME, typeof(NoImpossibleMenuMenu<>).MakeGenericType(type), false });
-            };
+            ModsPreferencesMenu<PauseMenuAction>.RegisterMenu(MOD_NAME, typeof(NoImpossibleMenuMenu<PauseMenuAction>), typeof(PauseMenuAction));
             Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) => {
                 args.Menus.Add(typeof(NoImpossibleMenuMenu<PauseMenuAction>), new NoImpossibleMenuMenu<PauseMenuAction>(args.Container, args.Module_list));
             };
+        }
+
+        public static void Log(object message, [CallerFilePath] string callingFilePath = "", [CallerLineNumber] int lineNumber = 0, [CallerMemberName] string caller = null) {
+            UnityEngine.Debug.Log($"[{MOD_ID}] [{caller}({callingFilePath}:{lineNumber})] {message}");
         }
     }
 }
