@@ -4,7 +4,7 @@
         <TargetFramework>net472</TargetFramework>
         <LangVersion>8</LangVersion>
         <PathMap>$(MSBuildThisFileDirectory)=./</PathMap>
-        <VersionPrefix>0.0.4</VersionPrefix>
+        <VersionPrefix>0.0.6</VersionPrefix>
     </PropertyGroup>
 
     <PropertyGroup Label="Override Stack trace file locations">

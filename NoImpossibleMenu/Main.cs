@@ -1,10 +1,8 @@
 ﻿using Kitchen;
 using KitchenLib;
 using KitchenLib.Event;
-using KitchenMods;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
 namespace NoImpossibleMenu {
 
@@ -16,9 +14,9 @@ namespace NoImpossibleMenu {
 
         private bool isRegistered;
 
-        public NoImpossibleMenu() : base(MOD_ID, MOD_NAME, "blargle", MOD_VERSION, ">=1.1.8", Assembly.GetExecutingAssembly()) { }
+        public NoImpossibleMenu() : base(MOD_ID, MOD_NAME, "blargle", MOD_VERSION, ">=1.2.0", Assembly.GetExecutingAssembly()) { }
 
-        protected override void OnPostActivate(Mod mod) {
+        protected override void OnInitialise() {
             Debug.Log($"[{MOD_ID}] v{MOD_VERSION} initialized");
             if (!isRegistered) {
                 NoImpossibleMenuPreferences.registerPreferences();
@@ -30,9 +28,9 @@ namespace NoImpossibleMenu {
         }
 
         private void initPauseMenu() {
-            ModsPreferencesMenu<PauseMenuAction>.RegisterMenu(MOD_NAME, typeof(NoImpossibleMenuMenu<PauseMenuAction>), typeof(PauseMenuAction));
-            Events.PreferenceMenu_PauseMenu_CreateSubmenusEvent += (s, args) => {
-                args.Menus.Add(typeof(NoImpossibleMenuMenu<PauseMenuAction>), new NoImpossibleMenuMenu<PauseMenuAction>(args.Container, args.Module_list));
+            ModsPreferencesMenu<MenuAction>.RegisterMenu(MOD_NAME, typeof(NoImpossibleMenuMenu<MenuAction>), typeof(MenuAction));
+            Events.PlayerPauseView_SetupMenusEvent += (s, args) => {
+                args.addMenu.Invoke(args.instance, new object[] { typeof(NoImpossibleMenuMenu<MenuAction>), new NoImpossibleMenuMenu<MenuAction>(args.instance.ButtonContainer, args.module_list) });
             };
         }
 
